@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your MySQL query statement below
 SELECT A.NAME, A.POPULATION, A.AREA
 FROM World  A
 WHERE A.AREA >= 3000000 OR A.POPULATION >= 25000000

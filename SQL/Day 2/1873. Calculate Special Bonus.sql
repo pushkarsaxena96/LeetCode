@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your MySQL query statement below
 SELECT EMPLOYEE_ID, CASE WHEN EMPLOYEE_ID % 2 != 0 AND UPPER(NAME)  NOT LIKE 'M%' THEN salary ELSE 0 END BONUS
 FROM Employees
 ORDER BY EMPLOYEE_ID

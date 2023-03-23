@@ -1,2 +1,2 @@
-# Write your MySQL query statement below
+-- Write your MySQL query statement below
 SELECT NAME CUSTOMERS FROM CUSTOMERS WHERE ID NOT IN (SELECT customerId  FROM ORDERS)
