@@ -8,18 +8,39 @@ import time
 """
 
 class Solution:
-    def isValid(self, s: str) -> bool:
-        hashTable = {'(' : 0, ')' : 1, '{' : 2, '}' : 3, '[' : 4, ']' : 5}
-        for i in range(0,len(s),2):
-            print("iteration:" + str(i))
-            print(hashTable[s[i]] % 2)
-            print(hashTable[s[i+1]] % 2)
-
-            if hashTable[s[i]] % 2 == 0 & hashTable[s[i+1]] % 2 != 0 :
-                pass
+    def isValidUsingIf(self, s: str) -> bool:
+        stack = []
+        for item in s:
+            print("existing stack:" + str(stack) )
+            if  item in ['(', '{', '[']:
+                stack.append(item)
             else:
-                return False
-        return True         
+                if not stack:
+                    return False
+                if item == ')' and stack[-1] == '(':
+                    stack.pop()
+                elif item == '}' and stack[-1] == '{':
+                    stack.pop()
+                elif item == ']' and stack[-1] == '[':
+                    stack.pop()
+                else:
+                    return False
+                
+            print("new stack:" + str(stack) )    
+        return not stack
+    
+    def isValidUsingMatchHash(self, s: str) -> bool:
+        stack = []
+        match = {"(": ")", "[": "]", "{": "}"}
+        for item in s:
+            if item in ')]}':
+                if len(stack) == 0 or match[stack[-1]] != item:
+                    return False
+                stack.pop()
+            else:
+                stack.append(item)
+
+        return len(stack) == 0             
 
 
 solution = Solution()
@@ -28,7 +49,7 @@ start_time = time.time()
 
 
 
-result = solution.isValid("()[[{}")
+result = solution.isValidUsingIf("{[]}")
 # Print the result
 print(result)     
 
